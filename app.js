@@ -2,16 +2,23 @@ var app = new Vue({
   el: '#app',
   data: {
     //   データを初期化
-    city: null,
-    temp: null,
-    condition: null,
-    humidity: null
+    city: '',
+    temp: '',
+    condition: 'default',
+    humidity: '',
+    selected: '',
+    ApiUrl: ''
   },
-  mounted: function(){
+  methods: {
+    // セレクトのvalueでurlを作成
+    changed: (message) => {
+      ApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + message + ',JP&appid=bec9e938962f8cd6841f1d5a1e9e2784';
+    }
+  },
+  updated: function(){
     // JSON形式でデータを取得
-    axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tokyo,JP&appid=bec9e938962f8cd6841f1d5a1e9e2784')
+    axios.get(ApiUrl)
     .then(function(response){
-      this.city = response.data.name // 都市
       this.condition = response.data.weather[0].main // 気候
       this.temp = response.data.main.temp // 気温
       this.humidity = response.data.main.humidity // 湿度
