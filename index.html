@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- meta -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>天気予報ミニアプリケーション</title>
+
+    <!-- og -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1 class="weather__title">現在の天気</h1>
+    <div id="app" class="weather__box">
+      <div class="weather__info">
+        <p class="weather__info__city">都市：{{ city }}</p>
+        <p class="weather__info__humidity">
+          気候：<span class="weather__info__humidity--rain" v-if="condition == 'Rain'">雨</span>
+          <span class="weather__info__humidity--clouds" v-else-if="condition == 'Clouds'">くもり</span>
+            <span class="weather__info__humidity--clear" v-else-if="condition == 'Clear'">晴れ</span>
+            <span class="weather__info__humidity--other" v-else>その他</span>
+        </p>
+        <p class="weather__info__temp">気温：{{ temp | roundUp }} ℃</p>
+        <p class="weather__info__humidity">湿度：{{ humidity }} %</p>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
